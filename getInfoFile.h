@@ -1,11 +1,12 @@
 typedef struct pss{
-	char nome[256];
-	char username[256];
+	char nome[128];
+	char username[16];
 	int PIN;
 	int idade;
-	char cidade[256];
-	char filme[256];
-	char cor[256];
+	char cidade[32];
+	char filme[32];
+	char time[32];
+	char cor[16];
 }PESSOA;
 
 typedef struct vector{
@@ -15,4 +16,4 @@ typedef struct vector{
 
 
 void iniciaVetor(VETOR_PESSOAS *VET);
-VETOR_PESSOAS getVetorPessoas(char filepath[]);
+VETOR_PESSOAS *getVetorPessoas(char filepath[]);
