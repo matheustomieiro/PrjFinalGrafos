@@ -1,5 +1,5 @@
 all: pessoa.o grafo.o main.o
-	gcc pessoa.o grafo.o main.o -g -Wall -o main
+	gcc pessoa.o grafo.o main.o -g -Wall -o main -lm
 
 pessoa.o:
 	gcc -c pessoa.c

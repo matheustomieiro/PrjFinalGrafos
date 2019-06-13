@@ -36,6 +36,10 @@ void ler_informacoes(Pessoa *P, FILE *arquivo){
 
 char *get_username(Pessoa *P){
 	return P->username;
+}
+
+int get_pin(Pessoa *P){
+	return P->pin;
 }	
 
 void imprimir_pessoa(Pessoa *P){
@@ -54,5 +58,30 @@ void imprimir_pessoa(Pessoa *P){
 
 }
 
+int nomes_iguais(Pessoa *P, Pessoa *Q){
+	return (strcmp(P->nome, Q->nome) == 0);
+}
 
+int diferenca_idades(Pessoa *P, Pessoa *Q){
+	if(fabs((float)P->idade - (float)Q->idade) < 5) return 25;
+	if(fabs((float)P->idade - (float)Q->idade) < 10) return 15;
+	if(fabs((float)P->idade - (float)Q->idade) < 20) return 5;
+	return 0;
+}
+
+int cidades_iguais(Pessoa *P, Pessoa *Q){
+	return (strcmp(P->cidade, Q->cidade) == 0);
+}
+
+int filmes_iguais(Pessoa *P, Pessoa *Q){
+	return (strcmp(P->filme, Q->filme) == 0);
+}
+
+int times_iguais(Pessoa *P, Pessoa *Q){
+	return (strcmp(P->futebol, Q->futebol) == 0);
+}
+
+int cores_iguais(Pessoa *P, Pessoa *Q){
+	return (strcmp(P->cor, Q->cor) == 0);
+}
 

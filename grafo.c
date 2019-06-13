@@ -74,12 +74,18 @@ void recuperar_usuarios(Grafo *G, FILE *arquivo){
 		Pessoa *P = criar_pessoa();
 		ler_informacoes(P, arquivo);
 		G->adj[G->numVertices].usuario = P;
-		/*for(int i=G->numVertices-1; i>=0; i--){
+		for(int i=G->numVertices-1; i>=0; i--){
 			//PROCESSO DE DEFINIÇÃO DA AFINIDADE
-
-
-			//inserir_aresta_sugerido(G, G->adj[->numVertices], i, afin);
-		}*/	
+			double afinidade = 0; //precisa de no mínimo 100 para ser recomendado
+			if(nomes_iguais(G->adj[i].usuario, G->adj[G->numVertices].usuario)) afinidade += 50;
+			afinidade += diferenca_idades(G->adj[i].usuario, G->adj[G->numVertices].usuario);
+			if(cidades_iguais(G->adj[i].usuario, G->adj[G->numVertices].usuario)) afinidade += 35;
+			if(filmes_iguais(G->adj[i].usuario, G->adj[G->numVertices].usuario)) afinidade += 35;
+			if(times_iguais(G->adj[i].usuario, G->adj[G->numVertices].usuario)) afinidade += 35;
+			if(cores_iguais(G->adj[i].usuario, G->adj[G->numVertices].usuario)) afinidade += 35;
+			//insere aresta de sugerido se afinidade for maior que 100...
+			if(afinidade >= 100) inserir_aresta_sugerido(G, G->numVertices, i, afinidade);
+		}	
 		G->numVertices++;
 	}
 
@@ -127,3 +133,70 @@ void inserir_aresta_sugerido(Grafo *G, int v1, int v2, double afinidade){
 	}
 }
 
+void inserir_aresta_amigo(Grafo *G, int v1, int v2){
+	if(G && v1 <= G->numVertices && v2 <= G->numVertices){
+		if(!(G->adj[v1].ini_amigos)){
+			/*Insere no inicio*/
+			G->adj[v1].ini_amigos = (NoAresta *)malloc(sizeof(NoAresta));
+			G->adj[v1].grau_amigos++;
+			G->adj[v1].ini_amigos->usuario_ligado = G->adj[v2].usuario;
+			//G->adj[v1].ini_amigos->afinidade = afinidade;
+			G->adj[v1].fim_amigos = G->adj[v1].ini_amigos;	
+		}else{
+			/*Insere no fim*/
+			G->adj[v1].fim_amigos->prox = (NoAresta *)malloc(sizeof(NoAresta));
+			G->adj[v1].grau_amigos++;
+			G->adj[v1].fim_amigos = G->adj[v1].fim_amigos->prox;
+			G->adj[v1].fim_amigos->usuario_ligado = G->adj[v2].usuario;
+			//G->adj[v1].fim_amigos->afinidade = afinidade;
+		}	
+		if(!(G->adj[v2].ini_amigos)){
+			/*Insere no inicio*/
+			G->adj[v2].ini_amigos = (NoAresta *)malloc(sizeof(NoAresta));
+			G->adj[v2].grau_amigos++;
+			G->adj[v2].ini_amigos->usuario_ligado = G->adj[v1].usuario;
+			//G->adj[v2].ini_amigos->afinidade = afinidade;
+			G->adj[v2].fim_amigos = G->adj[v2].ini_amigos;
+		}else{
+			/*Insere no fim*/
+			G->adj[v2].fim_amigos->prox = (NoAresta*)malloc(sizeof(NoAresta));
+			G->adj[v2].grau_amigos++;
+			G->adj[v2].fim_amigos = G->adj[v2].fim_amigos->prox;
+			G->adj[v2].fim_amigos->usuario_ligado = G->adj[v1].usuario;
+			//G->adj[v2].fim_amigos->afinidade = afinidade;
+		}
+	}
+}
+
+int busca_binaria(NoVertice *vet, char *chave, int comeco, int fim){
+	int centro = (comeco+fim)/2;
+	if(comeco > fim) return -1;
+	if(strcmp(get_username(vet[centro].usuario), chave) == 0) return centro;
+	else{
+		if(strcmp(get_username(vet[centro].usuario), chave) > 0)
+			return busca_binaria(vet, chave, comeco, centro-1);
+		else
+			return busca_binaria(vet, chave, centro+1, fim);
+	}
+}
+
+int posicao_vertice(Grafo *G, char *username){
+	return (busca_binaria(G->adj, username, 0, G->numVertices-1));
+}
+
+Pessoa *acessar_usuario(Grafo *G, int pos){
+	return G->adj[pos].usuario;
+}
+
+void listar_amigos(Grafo *G, int pos){
+	if(G->adj[pos].grau_amigos == 0){
+		//system("mpg321 -g 5 /home/mateusp_8877/Desktop/naruto.mp3");
+		printf("Sem amigos... tururuuu\n");
+	}else{
+		printf("amigos(%d): ", G->adj[pos].grau_amigos);
+		for(NoAresta *i=G->adj[pos].ini_amigos; i!=NULL; i=i->prox){
+			printf(" %s,", get_username(i->usuario_ligado));
+		}
+		printf("\n");
+	}	
+}

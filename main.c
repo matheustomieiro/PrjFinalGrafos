@@ -13,7 +13,7 @@ int main(){
 	
 	do{	
 		imprimir_menu_1();
-		scanf("%d", &opc);
+		scanf(" %d", &opc);
 		switch(opc){
 			case 0:
 				login(G);
@@ -46,6 +46,7 @@ void imprimir_menu_2(char *username){
 	printf("\tFriendbook - %s\n", username);
 	printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	printf("Escolha uma das opções a seguir:\n");
+	printf("#Opção (-1): Voltar.\n");
 	printf("#Opção (0): Listar amigos.\n");
 	printf("#Opção (1): Adicionar amigo.\n");
 	printf("#Opção (2): Recomendações de amizade VERDADEIRA.\n");
@@ -56,42 +57,48 @@ void imprimir_menu_2(char *username){
 
 void login(Grafo *G){
 
-	char username[256];
-	int pin, entrou = 0;
+	char username[256], amigo[256];
+	int pin, entrou = 0, pos_logado, pos_amigo, opc;
 	
 	do{
 		printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		printf("Username:");
-		scanf("%s", username);
-		int pos_no_grafo;
-		if((pos_no_grafo = existe_usuario(G, username)) >= 0){
+		scanf("%s%*c", username);
+		if((pos_logado = posicao_vertice(G, username)) >= 0){
 			printf("Pin:");
 			scanf("%d", &pin);
-			if(getPin(acessar_usuario(G, pos_no_grafo) == pin){
+			if(get_pin(acessar_usuario(G, pos_logado)) == pin){
 				entrou = 1;
 			}else printf("Senha Incorreta!\n");
 		}else printf("Não existe este usuário!\n");
 	}while(!entrou);
-
-	int opc;
 	
 	do{	
 		imprimir_menu_2(username);
-		scanf("%d", &opc);
+		scanf(" %d", &opc);
 		switch(opc){
 			case 0:
+				pos_logado = posicao_vertice(G, username);
+				listar_amigos(G, pos_logado);
 				break;
 			case 1:
+				printf("Digite o username de seu amigo:");
+				scanf("%s%*c", amigo);
+				pos_logado = posicao_vertice(G, username);
+				if((pos_amigo = posicao_vertice(G, amigo)) >= 0){
+					inserir_aresta_amigo(G, pos_logado, pos_amigo);
+					printf("%s agora é seu amigo!\n", amigo);
+				}else printf("o usuário %s não existe\n", amigo);
 				break;
-			case 2:
+			/*case 2:
 				break;
 			case 3:
 				break;
 			case 4:
-				break;
+				break;*/
 			default:
 				printf("***ERRO***\nDigite uma opção existente.\n");							
 		}
-	}while((opc < 0 || opc > 4);	
+	}while(opc != -1);	
 
 }
