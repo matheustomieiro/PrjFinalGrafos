@@ -6,9 +6,14 @@ void login(Grafo *G);
 
 int main(){
 
+	//Processo de criação do grafo:
 	Grafo *G = criar_grafo();
-	FILE *arquivo = fopen("data.csv", "r");
-	recuperar_usuarios(G, arquivo);
+	FILE *arquivo_base = fopen("data.csv", "r");
+	FILE *arquivo_preenchimento = fopen("", "r");
+	recuperar_usuarios_base(G, arquivo_base);
+	recuperar_usuarios_preenchimento(G, arquivo_preenchimento);
+	
+	//Menu:
 	int opc;
 	
 	do{	
@@ -46,7 +51,6 @@ void imprimir_menu_2(char *username){
 	printf("\tFriendbook - %s\n", username);
 	printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	printf("Escolha uma das opções a seguir:\n");
-	printf("#Opção (-1): Voltar.\n");
 	printf("#Opção (0): Listar amigos.\n");
 	printf("#Opção (1): Adicionar amigo.\n");
 	printf("#Opção (2): Recomendações de amizade VERDADEIRA.\n");
@@ -93,12 +97,10 @@ void login(Grafo *G){
 			/*case 2:
 				break;
 			case 3:
-				break;
-			case 4:
 				break;*/
 			default:
 				printf("***ERRO***\nDigite uma opção existente.\n");							
 		}
-	}while(opc != -1);	
+	}while(opc != 4);	
 
 }

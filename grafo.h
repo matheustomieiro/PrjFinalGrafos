@@ -10,7 +10,7 @@ typedef struct novertice NoVertice;
 typedef struct noaresta NoAresta;
 
 Grafo *criar_grafo();
-void recuperar_usuarios(Grafo *G, FILE *arquivo);
+void recuperar_usuarios_base(Grafo *G, FILE *arquivo);
 void inserir_aresta_sugerido(Grafo *G, int v1, int v2, double afinidade);
 void inserir_aresta_amigo(Grafo *G, int v1, int v2);
 int posicao_vertice(Grafo *G, char *username);
