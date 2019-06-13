@@ -94,9 +94,11 @@ void login(Grafo *G){
 					printf("%s agora é seu amigo!\n", amigo);
 				}else printf("o usuário %s não existe\n", amigo);
 				break;
-			/*case 2:
+			case 2:
+				pos_logado = posicao_vertice(G, username);
+				listar_sugeridos(G, pos_logado);
 				break;
-			case 3:
+			/*case 3:
 				break;*/
 			default:
 				printf("***ERRO***\nDigite uma opção existente.\n");							
