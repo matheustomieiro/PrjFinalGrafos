@@ -15,7 +15,7 @@ char *get_username(Pessoa *P);
 int get_pin(Pessoa *P);
 void imprimir_pessoa(Pessoa *P);
 int nomes_iguais(Pessoa *P, Pessoa *Q);
-int diferenca_idades(Pessoa *P, Pessoa *Q);
+double faixa_etaria(Pessoa *P, Pessoa *Q);
 int cidades_iguais(Pessoa *P, Pessoa *Q);
 int filmes_iguais(Pessoa *P, Pessoa *Q);
 int times_iguais(Pessoa *P, Pessoa *Q);

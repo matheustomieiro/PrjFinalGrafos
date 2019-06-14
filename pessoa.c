@@ -62,8 +62,13 @@ int nomes_iguais(Pessoa *P, Pessoa *Q){
 	return (strcmp(P->nome, Q->nome) == 0);
 }
 
-int idades_iguais(Pessoa *P, Pessoa *Q){
-	return (P->idade == Q->idade);
+double faixa_etaria(Pessoa *P, Pessoa *Q){
+	int diferenca = fabs((float)P->idade - (float)Q->idade);
+	if(diferenca <= 10) 
+		return (50 - diferenca);
+	if((20 - diferenca) < 0)
+		return 0;
+	return (20 - diferenca);
 }
 
 int cidades_iguais(Pessoa *P, Pessoa *Q){

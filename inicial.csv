@@ -1,0 +1,103 @@
+nome,username,pin,idade,cidade,filme,time,cor
+Reginaldo,reginaldo-0,4549,57,rio de janeiro,senhor dos aneis,sao caetano,roxo
+Roney,roney,1989,20,sao carlos,avengers,sao caetano,azul
+Amadeu,amadeu-1,3499,43,sao carlos,shrek,sao paulo,roxo
+Rick,rick-2,9245,48,rio de janeiro,kimi no na wa,sao paulo,azul
+Ana,ana-3,2235,59,sao paulo,shrek,sao caetano,azul
+Annie,annie-4,2964,41,rio de janeiro,shrek,sao caetano,roxo
+Leandro,leandro-5,5442,69,sao paulo,senhor dos aneis,sao paulo,amarelo
+Murilo,murilo-6,9023,27,sao carlos,senhor dos aneis,corinthians,azul
+Rick,rick-7,5733,15,sao paulo,shrek,corinthians,roxo
+Marcos,marcos-8,1180,37,sao paulo,kimi no na wa,corinthians,amarelo
+Reginaldo,reginaldo-9,3399,42,sao carlos,senhor dos aneis,sao paulo,amarelo
+Leandro,leandro-10,1353,36,rio de janeiro,senhor dos aneis,corinthians,azul
+Jonas,jonas-11,6759,31,rio de janeiro,kimi no na wa,sao paulo,amarelo
+Sampaio,sampaio-12,3973,23,rio de janeiro,shrek,corinthians,amarelo
+Andre,andre-13,6915,62,sao carlos,senhor dos aneis,sao paulo,amarelo
+Tereza,tereza-14,9198,39,sao paulo,senhor dos aneis,corinthians,azul
+Pedro,pedro-15,6769,36,sao carlos,kimi no na wa,corinthians,azul
+Luciana,luciana-16,3034,21,sao paulo,shrek,sao paulo,azul
+Michele,michele-17,1928,17,sao carlos,senhor dos aneis,corinthians,amarelo
+Tereza,tereza-18,4448,55,sao carlos,kimi no na wa,sao caetano,roxo
+Ana,ana-19,2371,54,sao paulo,senhor dos aneis,sao caetano,amarelo
+Rosana,rosana-20,9550,13,sao carlos,kimi no na wa,sao caetano,amarelo
+Jonas,jonas-21,6909,69,sao carlos,senhor dos aneis,sao caetano,azul
+Leandro,leandro-22,1704,14,sao paulo,shrek,corinthians,roxo
+Amadeu,amadeu-23,1467,19,rio de janeiro,kimi no na wa,corinthians,azul
+Annie,annie-24,1486,63,sao paulo,kimi no na wa,corinthians,roxo
+Mateus,mateus-25,2468,33,rio de janeiro,senhor dos aneis,sao paulo,roxo
+Julia,julia-26,5073,51,sao paulo,shrek,corinthians,azul
+Annie,annie-27,6192,63,rio de janeiro,shrek,sao caetano,amarelo
+Sampaio,sampaio-28,9328,63,rio de janeiro,senhor dos aneis,corinthians,amarelo
+Annie,annie-29,7001,40,sao paulo,senhor dos aneis,corinthians,azul
+Maria,maria-30,3232,48,sao paulo,senhor dos aneis,sao caetano,azul
+Ana,ana-31,1667,48,sao paulo,shrek,sao paulo,amarelo
+Almir,almir-32,5914,53,sao paulo,shrek,sao paulo,amarelo
+Luciana,luciana-33,4027,61,sao carlos,kimi no na wa,sao paulo,roxo
+Sampaio,sampaio-34,3105,51,sao carlos,shrek,sao caetano,amarelo
+Mateus,mateus-35,6596,12,sao carlos,senhor dos aneis,corinthians,roxo
+Renata,renata-36,2661,47,sao carlos,senhor dos aneis,sao caetano,amarelo
+Felipe,felipe-37,9288,51,sao carlos,kimi no na wa,sao paulo,azul
+Almir,almir-38,8896,51,sao paulo,kimi no na wa,sao paulo,roxo
+Andre,andre-39,6999,27,rio de janeiro,kimi no na wa,sao caetano,azul
+Annie,annie-40,1032,60,sao paulo,kimi no na wa,sao paulo,amarelo
+Michele,michele-41,7883,52,sao paulo,senhor dos aneis,sao paulo,amarelo
+Rick,rick-42,9246,62,sao paulo,senhor dos aneis,sao paulo,azul
+Michele,michele-43,9186,63,sao carlos,shrek,sao caetano,azul
+Reginaldo,reginaldo-44,5431,38,rio de janeiro,shrek,sao caetano,azul
+Tereza,tereza-45,7547,18,sao carlos,shrek,corinthians,amarelo
+Mateus,mateus-46,2997,40,sao paulo,kimi no na wa,sao paulo,azul
+Michele,michele-47,9176,47,rio de janeiro,senhor dos aneis,sao paulo,roxo
+Murilo,murilo-48,6929,47,sao paulo,kimi no na wa,sao caetano,azul
+Maria,maria-49,4272,27,sao paulo,kimi no na wa,sao paulo,amarelo
+Andre,andre-50,3389,50,rio de janeiro,shrek,sao caetano,amarelo
+Camilla,camilla-51,5659,22,sao carlos,shrek,corinthians,roxo
+Ana,ana-52,3934,54,sao carlos,senhor dos aneis,sao paulo,amarelo
+Tiago,tiago-53,4697,10,rio de janeiro,senhor dos aneis,sao caetano,azul
+Reginaldo,reginaldo-54,7489,12,sao carlos,senhor dos aneis,corinthians,azul
+Regina,regina-55,8786,15,sao paulo,shrek,sao caetano,roxo
+Sampaio,sampaio-56,2185,13,sao paulo,shrek,corinthians,amarelo
+Luciana,luciana-57,2072,45,sao carlos,shrek,sao paulo,roxo
+Juliana,juliana-58,8998,39,sao paulo,shrek,sao paulo,roxo
+Andre,andre-59,3102,60,sao paulo,kimi no na wa,corinthians,azul
+Regina,regina-60,3029,60,sao paulo,shrek,corinthians,roxo
+Sampaio,sampaio-61,6932,12,sao paulo,senhor dos aneis,sao paulo,amarelo
+Juliana,juliana-62,2989,22,sao carlos,kimi no na wa,corinthians,amarelo
+Jonas,jonas-63,2803,34,sao paulo,shrek,sao caetano,roxo
+Leandro,leandro-64,2392,43,sao paulo,shrek,sao paulo,azul
+Jonas,jonas-65,3344,49,sao carlos,senhor dos aneis,corinthians,amarelo
+Tereza,tereza-66,3807,49,sao paulo,shrek,corinthians,roxo
+Camilla,camilla-67,5666,34,sao carlos,senhor dos aneis,corinthians,amarelo
+Tiago,tiago-68,1296,13,rio de janeiro,kimi no na wa,sao paulo,amarelo
+Julia,julia-69,1010,10,sao paulo,kimi no na wa,sao paulo,amarelo
+Mateus,mateus-70,4072,50,rio de janeiro,shrek,sao caetano,amarelo
+Mateus,mateus-71,2414,40,rio de janeiro,senhor dos aneis,corinthians,azul
+Murilo,murilo-72,7354,63,sao carlos,senhor dos aneis,corinthians,azul
+Michele,michele-73,5962,66,sao carlos,shrek,corinthians,amarelo
+Sampaio,sampaio-74,6350,50,rio de janeiro,senhor dos aneis,sao caetano,amarelo
+Andre,andre-75,6739,56,rio de janeiro,senhor dos aneis,sao caetano,roxo
+Regina,regina-76,2502,58,rio de janeiro,senhor dos aneis,sao paulo,roxo
+Andre,andre-77,6372,49,sao carlos,kimi no na wa,sao paulo,azul
+Tereza,tereza-78,5663,60,sao carlos,kimi no na wa,sao paulo,roxo
+Marcos,marcos-79,8329,33,sao carlos,shrek,sao caetano,roxo
+Ana,ana-80,4660,11,rio de janeiro,shrek,corinthians,roxo
+Luciana,luciana-81,5296,70,sao paulo,kimi no na wa,sao paulo,roxo
+Felipe,felipe-82,2978,48,rio de janeiro,senhor dos aneis,sao paulo,roxo
+Reginaldo,reginaldo-83,9573,67,rio de janeiro,senhor dos aneis,sao paulo,roxo
+Felipe,felipe-84,5297,67,sao carlos,senhor dos aneis,corinthians,azul
+Regina,regina-85,8022,56,rio de janeiro,kimi no na wa,corinthians,amarelo
+Renata,renata-86,4621,44,sao carlos,shrek,sao caetano,roxo
+Marcos,marcos-87,6884,65,sao paulo,shrek,corinthians,azul
+Marcos,marcos-88,2791,49,sao carlos,senhor dos aneis,sao paulo,azul
+Julia,julia-89,6072,24,sao paulo,shrek,sao caetano,amarelo
+Andre,andre-90,7936,64,rio de janeiro,kimi no na wa,sao paulo,roxo
+Teodoro,teodoro-91,6751,68,sao paulo,kimi no na wa,corinthians,roxo
+Pedro,pedro-92,7728,39,sao paulo,senhor dos aneis,sao caetano,amarelo
+Camilla,camilla-93,7467,66,sao paulo,kimi no na wa,sao caetano,azul
+Camilla,camilla-94,2586,17,sao paulo,senhor dos aneis,sao caetano,azul
+Roberto,roberto-95,5156,49,rio de janeiro,kimi no na wa,sao paulo,azul
+Murilo,murilo-96,5467,36,sao paulo,kimi no na wa,corinthians,roxo
+Mateus,mateus-97,1312,36,rio de janeiro,senhor dos aneis,sao paulo,amarelo
+Marcos,marcos-98,5711,22,sao carlos,senhor dos aneis,sao caetano,amarelo
+Maria,maria-99,4073,13,rio de janeiro,senhor dos aneis,corinthians,amarelo
+Michele,michele-100,3816,55,sao paulo,senhor dos aneis,sao caetano,roxo

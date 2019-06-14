@@ -23,7 +23,7 @@ cidades = {"sao paulo", "sao carlos", "rio de janeiro", "manaus", "curitiba",
           "salvador", "campinas", "riberao preto", "florianopolis", "rio branco"
 }
 
-file = io.open("adicao.in","w+");
+file = io.open("adicao.csv","w+");
 io.output(file)
 if arg[1] == nil then
   print("Digite um argumento... (numero de usuarios a serem gerados!)")
@@ -37,7 +37,7 @@ for i=0, arg[1] do
   local nome = nomes[math.random(1,31)]
   local username = "" .. string.lower(nome) .. tostring(i)
   local pin = math.random(1000, 9999)
-  local idade = math.random(17,70)
+  local idade = math.random(10,70)
   local cidade = cidades[math.random(1,10)]
   local filme = filmes[math.random(1,10)]
   local time = times[math.random(1,10)]
