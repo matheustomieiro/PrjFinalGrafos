@@ -45,14 +45,14 @@ int get_pin(Pessoa *P){
 void imprimir_pessoa(Pessoa *P){
 	if(P){
 		printf("-----------------------------------\n");
-		printf("nome: %s\n", P->nome);
-		printf("username: %s\n", P->username);
-		printf("pin: %d\n", P->pin);
-		printf("idade: %d\n", P->idade);
-		printf("cidade: %s\n", P->cidade);
-		printf("filme: %s\n", P->filme);
-		printf("time: %s\n", P->futebol);
-		printf("cor: %s\n", P->cor);
+		printf("Nome: %s\n", P->nome);
+		printf("Username: %s\n", P->username);
+		printf("Pin: %d\n", P->pin);
+		printf("Idade: %d\n", P->idade);
+		printf("Cidade: %s\n", P->cidade);
+		printf("Filme: %s\n", P->filme);
+		printf("Time: %s\n", P->futebol);
+		printf("Cor: %s\n", P->cor);
 		printf("-----------------------------------\n");
 	}	
 
@@ -64,11 +64,13 @@ int nomes_iguais(Pessoa *P, Pessoa *Q){
 
 double faixa_etaria(Pessoa *P, Pessoa *Q){
 	int diferenca = fabs((float)P->idade - (float)Q->idade);
+	if(diferenca == 0)
+		return 50;
+	if(diferenca <= 5)
+		return (30 - diferenca);
 	if(diferenca <= 10) 
-		return (50 - diferenca);
-	if((20 - diferenca) < 0)
-		return 0;
-	return (20 - diferenca);
+		return (20 - diferenca);
+	return 0;
 }
 
 int cidades_iguais(Pessoa *P, Pessoa *Q){
@@ -87,3 +89,24 @@ int cores_iguais(Pessoa *P, Pessoa *Q){
 	return (strcmp(P->cor, Q->cor) == 0);
 }
 
+Pessoa *registrar_pessoa(){
+	Pessoa *P = criar_pessoa();
+	printf("Digite os valores dos seguintes campos:\n");
+	printf("Nome:");
+	scanf("%[^\n]%*c", P->nome);
+	printf("Username:");
+	scanf("%[^\n]%*c", P->username);
+	printf("Pin:");
+	scanf("%d%*c", &(P->pin));
+	printf("Idade:");
+	scanf("%d%*c", &(P->idade));
+	printf("Cidade:");
+	scanf("%[^\n]%*c", P->cidade);
+	printf("Filme:");
+	scanf("%[^\n]%*c", P->filme);
+	printf("Time:");
+	scanf("%[^\n]%*c", P->futebol);
+	printf("Cor:");
+	scanf("%[^\n]%*c", P->cor);
+	return P;
+}

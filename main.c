@@ -3,6 +3,7 @@
 void imprimir_menu_1();
 void imprimir_menu_2();
 void login(Grafo *G);
+void cadastrar(Grafo *G);
 void espera();
 void easter_egg(char *username);
 
@@ -21,16 +22,19 @@ int main(){
 	
 	do{	
 		imprimir_menu_1();
-		scanf(" %d", &opc);
+		scanf(" %d%*c", &opc);
 		switch(opc){
-			case 0:
+			case 1:
 				login(G);
-				break;	
+				break;
+			case 2:
+				cadastrar(G);
+				break;		
 		}
-		if(opc != 1){
+		if(opc < 0 || opc > 2){
 			printf("***ERRO***\nDigite uma opção existente.\n");
 		}
-	}while(opc != 1);
+	}while(opc != 0);
 	
 	fclose(arquivo_base);
 	fclose(arquivo_preenchimento);
@@ -44,9 +48,9 @@ void imprimir_menu_1(){
 	printf("\t\tFriendbook\n");
 	printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	printf("Escolha uma das opções a seguir:\n");
-	printf("#Opção (0): Fazer Login.\n");
-	printf("#Opção (1): Sair do Programa.\n");
-	//printf("#Opção (2): Cadastrar-se.\n");
+	printf("#Opção (0): Sair do Programa.\n");
+	printf("#Opção (1): Fazer Login.\n");
+	printf("#Opção (2): Cadastrar-se.\n");
 	//printf("#Opção (3): Remover Conta.\n");
 	printf("Digite o número correspondente:");
 }
@@ -56,11 +60,14 @@ void imprimir_menu_2(char *username){
 	printf("\tFriendbook - %s\n", username);
 	printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	printf("Escolha uma das opções a seguir:\n");
-	printf("#Opção (0): Listar Amigos.\n");
-	printf("#Opção (1): Adicionar Amigo.\n");
-	printf("#Opção (2): Recomendações de Amizade VERDADEIRA.\n");
-	printf("#Opção (3): Listar Amigos 'Maçãs Podres'.\n");
-	printf("#Opção (4): Sair da Conta.\n");
+	printf("#Opção (0): Sair da Conta.\n");
+	printf("#Opção (1): Listar Amigos.\n");
+	printf("#Opção (2): Adicionar Amigo.\n");
+	printf("#Opção (3): Recomendações de Amizade VERDADEIRA.\n");
+	printf("#Opção (4): Listar Amigos 'Maçãs Podres'.\n");
+	printf("#Opção (5): Cupido.\n");
+	printf("#Opção (6): Meu Perfil\n");
+	printf("#Opção (7): Buscar Perfil.\n");
 	printf("Digite o número correspondente:");
 }
 
@@ -100,16 +107,17 @@ void login(Grafo *G){
 		imprimir_menu_2(username);
 		scanf(" %d%*c", &opc);
 		switch(opc){
-			case 0:
+			case 1:
 				listar_amigos(G, pos_logado);
 				espera();
 				break;
-			case 1:
+			case 2:
 				printf("Digite o username de quem você quer adicionar como amigo:");
 				scanf("%s%*c", amigo);
 				if((pos_amigo = posicao_vertice(G, amigo)) >= 0){			
 					if(!existe_aresta_amigo(G, pos_logado, pos_amigo)){
 						afinidade = get_afinidade(G, pos_logado, pos_amigo);
+						if(afinidade > 100) afinidade = 100;
 						printf("A chance de você ter amizade verdadeira com %s é %.2lf%%.\n", amigo, afinidade);
 						do{
 							printf("Tem certeza que vai mandar convite de amizade?[S/N]\n");
@@ -128,17 +136,54 @@ void login(Grafo *G){
 				}else printf("o usuário %s não existe\n", amigo);
 				espera();
 				break;
-			case 2:
+			case 3:
 				listar_sugeridos(G, pos_logado);
 				espera();
 				break;
-			/*case 3:
-				break;*/
-			default:
-				printf("***ERRO***\nDigite uma opção existente.\n");							
-		}
-	}while(opc != 4);	
+			case 4:
+				listar_amigos_nao_sugeridos(G, pos_logado);
+				espera();
+				break;
 
+			case 5:
+				indicar_interesse_romantico(G, pos_logado);
+				espera();
+				break;
+
+			case 6:
+				imprimir_pessoa(acessar_usuario(G, pos_logado));
+				espera();
+				break;	
+			
+			case 7:
+				printf("Digite o username do perfil que você quer ver:");
+				scanf("%s%*c", amigo);
+				if((pos_amigo = posicao_vertice(G, amigo)) >= 0){
+					imprimir_pessoa(acessar_usuario(G, pos_amigo));
+				}else printf("o usuário %s não existe\n", amigo);
+				espera();
+				break;
+		}
+
+		if(opc < 0 || opc > 7){
+			printf("***ERRO***\nDigite uma opção existente.\n");							
+		}
+
+	}while(opc != 0);	
+
+}
+
+void cadastrar(Grafo *G){
+	int valido = 0;
+	Pessoa *P;
+	do{
+		P = registrar_pessoa();
+		valido = registro_valido(G, P);
+		if(!valido){
+			printf("***ERRO***\nUsername digitado já existe.\n");
+		}
+	}while(!valido);	
+	inserir_vertice(G, P);
 }
 
 

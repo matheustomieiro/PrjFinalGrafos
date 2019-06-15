@@ -20,5 +20,6 @@ int cidades_iguais(Pessoa *P, Pessoa *Q);
 int filmes_iguais(Pessoa *P, Pessoa *Q);
 int times_iguais(Pessoa *P, Pessoa *Q);
 int cores_iguais(Pessoa *P, Pessoa *Q);
+Pessoa *registrar_pessoa();
 
 #endif
