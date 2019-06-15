@@ -6,6 +6,7 @@ void login(Grafo *G);
 void cadastrar(Grafo *G);
 void espera();
 void easter_egg(char *username);
+void remover(Grafo *G);
 
 int main(){
 
@@ -29,15 +30,19 @@ int main(){
 				break;
 			case 2:
 				cadastrar(G);
-				break;		
+				break;
+			case 3:
+				remover(G);
+				break;			
 		}
-		if(opc < 0 || opc > 2){
+		if(opc < 0 || opc > 3){
 			printf("***ERRO***\nDigite uma opção existente.\n");
 		}
 	}while(opc != 0);
 	
 	fclose(arquivo_base);
 	fclose(arquivo_preenchimento);
+	limpar_grafo(G);
 
 	return 0;
 }
@@ -51,7 +56,7 @@ void imprimir_menu_1(){
 	printf("#Opção (0): Sair do Programa.\n");
 	printf("#Opção (1): Fazer Login.\n");
 	printf("#Opção (2): Cadastrar-se.\n");
-	//printf("#Opção (3): Remover Conta.\n");
+	printf("#Opção (3): Remover Conta.\n");
 	printf("Digite o número correspondente:");
 }
 
@@ -63,11 +68,12 @@ void imprimir_menu_2(char *username){
 	printf("#Opção (0): Sair da Conta.\n");
 	printf("#Opção (1): Listar Amigos.\n");
 	printf("#Opção (2): Adicionar Amigo.\n");
-	printf("#Opção (3): Recomendações de Amizade VERDADEIRA.\n");
-	printf("#Opção (4): Listar Amigos 'Maçãs Podres'.\n");
-	printf("#Opção (5): Cupido.\n");
-	printf("#Opção (6): Meu Perfil\n");
-	printf("#Opção (7): Buscar Perfil.\n");
+	printf("#Opção (3): Remover Amigo.\n");
+	printf("#Opção (4): Recomendações de Amizade VERDADEIRA.\n");
+	printf("#Opção (5): Listar Amigos 'Maçãs Podres'.\n");
+	printf("#Opção (6): Cupido.\n");
+	printf("#Opção (7): Meu Perfil\n");
+	printf("#Opção (8): Buscar Perfil.\n");
 	printf("Digite o número correspondente:");
 }
 
@@ -137,25 +143,34 @@ void login(Grafo *G){
 				espera();
 				break;
 			case 3:
-				listar_sugeridos(G, pos_logado);
+				printf("Digite o username do amigo que você quer remover:");
+				scanf("%s%*c", amigo);
+				if((pos_amigo = posicao_vertice(G, amigo)) >= 0){
+					if(existe_aresta_amigo(G, pos_logado, pos_amigo)) remover_aresta_amigo(G, pos_logado, pos_amigo);
+					else printf("o usuário %s não é seu amigo\n", amigo);
+				}else printf("o usuário %s não existe\n", amigo);
 				espera();
 				break;
 			case 4:
+				listar_sugeridos(G, pos_logado);
+				espera();
+				break;
+			case 5:
 				listar_amigos_nao_sugeridos(G, pos_logado);
 				espera();
 				break;
 
-			case 5:
+			case 6:
 				indicar_interesse_romantico(G, pos_logado);
 				espera();
 				break;
 
-			case 6:
+			case 7:
 				imprimir_pessoa(acessar_usuario(G, pos_logado));
 				espera();
 				break;	
 			
-			case 7:
+			case 8:
 				printf("Digite o username do perfil que você quer ver:");
 				scanf("%s%*c", amigo);
 				if((pos_amigo = posicao_vertice(G, amigo)) >= 0){
@@ -165,7 +180,7 @@ void login(Grafo *G){
 				break;
 		}
 
-		if(opc < 0 || opc > 7){
+		if(opc < 0 || opc > 8){
 			printf("***ERRO***\nDigite uma opção existente.\n");							
 		}
 
@@ -196,4 +211,21 @@ void easter_egg(char *username){
 	if(!strcmp(username, "roney")){
 		system("{ mpg321 -g 100 sc.mp3; } 2> /dev/null");
 	}
+}
+
+
+void remover(Grafo *G){
+	char username[256];
+	int pos;
+	do{
+		printf("Username:");
+		scanf("%s%*c", username);
+		pos = (posicao_vertice(G, username));
+		if(pos < 0){
+			printf("***ERRO***\nUsuário não existe.\n");
+		}
+	}while(pos < 0);
+
+	remover_vertice(G, pos);
+
 }

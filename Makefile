@@ -19,5 +19,5 @@ clear:
 run: clear all
 	./main
 
-memcheck:
-	valgrind --leak-check=full ./main
+memcheck: clear all
+	valgrind -v --track-origins=yes --leak-check=full --show-leak-kinds=all ./main
