@@ -598,13 +598,14 @@ void remover_aresta_amigo(Grafo *G, int v1, int v2){
 		}else{
 			NoAresta *atual = ant->prox;
 			while(atual != NULL && posicao_vertice(G, get_username(atual->usuario_ligado)) != v2){
-				ant = ant->prox;
+				ant = atual;
 				atual = atual->prox;
 			}
 			if(atual){
 				if(atual == G->adj[v1].fim_amigos){
 					/*Achou no fim*/	
 					G->adj[v1].fim_amigos = ant;
+					ant->prox = NULL;
 				}
 				else{
 					/*Achou no meio*/		
@@ -622,20 +623,25 @@ void remover_aresta_amigo(Grafo *G, int v1, int v2){
 		}else{
 			NoAresta *atual = ant->prox;
 			while(posicao_vertice(G, get_username(atual->usuario_ligado)) != v1){
-				ant = ant->prox;
+				ant = atual;
 				atual = atual->prox;
-			}	
-			if(atual == G->adj[v2].fim_amigos){
-				/*Achou no fim_amigos*/	
-				G->adj[v2].fim_amigos = ant;
 			}
-			else{
-				/*Achou no meio*/	
-				ant->prox = atual->prox;
+			if(atual){	
+				if(atual == G->adj[v2].fim_amigos){
+					/*Achou no fim_amigos*/	
+					G->adj[v2].fim_amigos = ant;
+					ant->prox = NULL;
+				}
+				else{
+					/*Achou no meio*/	
+					ant->prox = atual->prox;
+				}
+				free(atual);
+				atual = NULL;
 			}
-			free(atual);
-			atual = NULL;
-		}	
+		}
+		G->adj[v1].grau_amigos--;
+		G->adj[v2].grau_amigos--;	
 	}	
 }
 
@@ -650,13 +656,14 @@ void remover_aresta_sugerido(Grafo *G, int v1, int v2){
 		}else{
 			NoAresta *atual = ant->prox;
 			while(atual != NULL && posicao_vertice(G, get_username(atual->usuario_ligado)) != v2){
-				ant = ant->prox;
+				ant = atual;
 				atual = atual->prox;
 			}
 			if(atual){
 				if(atual == G->adj[v1].fim_sugeridos){
 					/*Achou no fim*/	
 					G->adj[v1].fim_sugeridos = ant;
+					ant->prox = NULL;
 				}
 				else{
 					/*Achou no meio*/		
@@ -674,20 +681,25 @@ void remover_aresta_sugerido(Grafo *G, int v1, int v2){
 		}else{
 			NoAresta *atual = ant->prox;
 			while(posicao_vertice(G, get_username(atual->usuario_ligado)) != v1){
-				ant = ant->prox;
+				ant = atual;
 				atual = atual->prox;
+			}
+			if(atual){	
+				if(atual == G->adj[v2].fim_sugeridos){
+					/*Achou no fim_sugeridos*/	
+					G->adj[v2].fim_sugeridos = ant;
+					ant->prox = NULL;
+				}
+				else{
+					/*Achou no meio*/	
+					ant->prox = atual->prox;
+				}
+				free(atual);
+				atual = NULL;
 			}	
-			if(atual == G->adj[v2].fim_sugeridos){
-				/*Achou no fim_sugeridos*/	
-				G->adj[v2].fim_sugeridos = ant;
-			}
-			else{
-				/*Achou no meio*/	
-				ant->prox = atual->prox;
-			}
-			free(atual);
-			atual = NULL;
-		}	
+		}
+		G->adj[v1].grau_sugeridos--;
+		G->adj[v2].grau_sugeridos--;		
 	}	
 }
 
@@ -698,6 +710,16 @@ void remover_vertice(Grafo *G, int pos){
 	reajuste_legal = (pos == G->pos_legal);
 	//shift
 	NoVertice aux;
+
+	//remove as arestas
+	for(NoAresta *a=G->adj[pos].ini_sugeridos; a!=NULL; a=G->adj[pos].ini_sugeridos){	
+		remover_aresta_sugerido(G, pos, posicao_vertice(G, get_username(a->usuario_ligado)));
+	}
+
+	for(NoAresta *a=G->adj[pos].ini_amigos; a!=NULL; a=G->adj[pos].ini_amigos){
+		remover_aresta_amigo(G, pos, posicao_vertice(G, get_username(a->usuario_ligado)));
+	}
+
 	for(int i=pos; i<G->numVertices-1; i++){
 		aux = G->adj[i];
 		G->adj[i] = G->adj[i+1];
@@ -705,15 +727,7 @@ void remover_vertice(Grafo *G, int pos){
 		if((i+1) == G->pos_famoso) G->pos_famoso--;
 		if((i+1) == G->pos_legal) G->pos_legal--;
 	}
-
-	//remove as arestas
-	for(NoAresta *a=G->adj[pos].ini_sugeridos; a!=NULL; a=a->prox){
-		remover_aresta_sugerido(G, G->numVertices-1, posicao_vertice(G, get_username(a->usuario_ligado)));
-	}
-
-	for(NoAresta *a=G->adj[pos].ini_amigos; a!=NULL; a=a->prox){
-		remover_aresta_amigo(G, G->numVertices-1, posicao_vertice(G, get_username(a->usuario_ligado)));
-	}
+	
 
 	//remove o vértice
 	remover_pessoa(G->adj[G->numVertices-1].usuario);
