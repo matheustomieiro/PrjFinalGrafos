@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:adicao.csv">
+   </FileRef>
+   <FileRef
+      location = "group:data.csv">
+   </FileRef>
+   <FileRef
+      location = "group:fila.c">
+   </FileRef>
+   <FileRef
+      location = "group:fila.h">
+   </FileRef>
+   <FileRef
+      location = "group:fila.o">
+   </FileRef>
+   <FileRef
+      location = "group:forever_alone.mp3">
+   </FileRef>
+   <FileRef
+      location = "group:grafo.c">
+   </FileRef>
+   <FileRef
+      location = "group:grafo.h">
+   </FileRef>
+   <FileRef
+      location = "group:grafo.o">
+   </FileRef>
+   <FileRef
+      location = "group:habilitar_easter_eggs">
+   </FileRef>
+   <FileRef
+      location = "group:inicial.csv">
+   </FileRef>
+   <FileRef
+      location = "group:LICENSE">
+   </FileRef>
+   <FileRef
+      location = "group:main">
+   </FileRef>
+   <FileRef
+      location = "group:main.c">
+   </FileRef>
+   <FileRef
+      location = "group:main.o">
+   </FileRef>
+   <FileRef
+      location = "group:Makefile">
+   </FileRef>
+   <FileRef
+      location = "group:pessoa.c">
+   </FileRef>
+   <FileRef
+      location = "group:pessoa.h">
+   </FileRef>
+   <FileRef
+      location = "group:pessoa.o">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:recomendacoes.txt">
+   </FileRef>
+   <FileRef
+      location = "group:Relato&#x301;rio.odt">
+   </FileRef>
+   <FileRef
+      location = "group:sc.mp3">
+   </FileRef>
+   <FileRef
+      location = "group:scriptAdicao.lua">
+   </FileRef>
+   <FileRef
+      location = "group:scriptInicial.lua">
+   </FileRef>
+</Workspace>
