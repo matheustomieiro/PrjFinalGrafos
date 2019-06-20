@@ -1,3 +1,20 @@
+/*
+	Trabalho de Grafos - Rede Social de Amizade Verdadeira
+	Professor: Tiago A. S. Pardo
+	Monitor PAE: Roney Lira de Sales Santos
+	
+	Alunos:
+	Mateus Prado Santos (10851707)
+	Matheus Lopez Rigato (10260462)
+	Matheus Tomieiro de Oliveira (10734630)
+
+	Este programa simula uma rede social com recomendações de amizade verdadeira.
+
+	A documentação está nos arquivos headers(.h);
+
+*/
+
+
 #include "grafo.h"
 
 void imprimir_menu_1();
@@ -18,7 +35,7 @@ int main(){
 	recuperar_usuarios_preenchimento(G, arquivo_preenchimento);
 	ordenar_vertices(G);
 
-	//Menu:
+	//Menu inicial:
 	int opc;
 	
 	do{	
@@ -40,6 +57,7 @@ int main(){
 		}
 	}while(opc != 0);
 	
+	//liberação de memória e ponteiros para arquivos
 	fclose(arquivo_base);
 	fclose(arquivo_preenchimento);
 	limpar_grafo(G);
@@ -83,6 +101,7 @@ void login(Grafo *G){
 	int pin, entrou = 0, pos_logado, pos_amigo, opc;
 	double afinidade;
 
+	//Processo de login
 	do{
 		printf("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 		printf("Username:");
@@ -98,6 +117,7 @@ void login(Grafo *G){
 	
 	easter_egg(username);
 
+	//Verifica se há convites de amizade
 	if(existe_convites(G, pos_logado)){
 		do{
 			printf("Existem convites de amizade para você. Deseja vê-los?[S/N]\n");			
@@ -109,14 +129,17 @@ void login(Grafo *G){
 		}while(c != 's' && c != 'n' && c != 'S' && c != 'N');
 	}
 
+	//Menu de usuário.
 	do{	
 		imprimir_menu_2(username);
 		scanf(" %d%*c", &opc);
 		switch(opc){
+			//listar amigos
 			case 1:
 				listar_amigos(G, pos_logado);
 				espera();
 				break;
+			//adicionar amigos	
 			case 2:
 				printf("Digite o username de quem você quer adicionar como amigo:");
 				scanf("%s%*c", amigo);
@@ -142,6 +165,7 @@ void login(Grafo *G){
 				}else printf("o usuário %s não existe\n", amigo);
 				espera();
 				break;
+			//remover amigos	
 			case 3:
 				printf("Digite o username do amigo que você quer remover:");
 				scanf("%s%*c", amigo);
@@ -151,25 +175,27 @@ void login(Grafo *G){
 				}else printf("o usuário %s não existe\n", amigo);
 				espera();
 				break;
+			//listar sugeridos	
 			case 4:
 				listar_sugeridos(G, pos_logado);
 				espera();
 				break;
+			//listar amigos maças podres	
 			case 5:
 				listar_amigos_nao_sugeridos(G, pos_logado);
 				espera();
 				break;
-
+			//mostrar suposto interesse romantico	
 			case 6:
 				indicar_interesse_romantico(G, pos_logado);
 				espera();
 				break;
-
+			//imprimir dados do usuário logado	
 			case 7:
 				imprimir_pessoa(acessar_usuario(G, pos_logado));
 				espera();
 				break;	
-			
+			//imprimir dados de um usuário qualquer da rede
 			case 8:
 				printf("Digite o username do perfil que você quer ver:");
 				scanf("%s%*c", amigo);
@@ -192,12 +218,14 @@ void cadastrar(Grafo *G){
 	int valido = 0;
 	Pessoa *P;
 	do{
+		//Registra os dados de uma pessoa verificando se são válidos
 		P = registrar_pessoa();
 		valido = registro_valido(G, P);
 		if(!valido){
 			printf("***ERRO***\nUsername digitado já existe.\n");
 		}
-	}while(!valido);	
+	}while(!valido);
+	//insere na rede	
 	inserir_vertice(G, P);
 }
 
@@ -217,6 +245,7 @@ void easter_egg(char *username){
 void remover(Grafo *G){
 	char username[256];
 	int pos;
+	//procura usuário na rede
 	do{
 		printf("Username:");
 		scanf("%s%*c", username);
@@ -225,7 +254,7 @@ void remover(Grafo *G){
 			printf("***ERRO***\nUsuário não existe.\n");
 		}
 	}while(pos < 0);
-
+	//remove o usuário da rede
 	remover_vertice(G, pos);
 
 }
